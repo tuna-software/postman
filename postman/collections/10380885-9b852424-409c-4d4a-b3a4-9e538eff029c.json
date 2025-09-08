@@ -4055,6 +4055,45 @@
 					"response": []
 				},
 				{
+					"name": "4. Statement (merchant api) Copy",
+					"id": "10380885-29eb46da-0c36-4476-9db4-183e6cf62e8a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"MerchantID\": \"2\",\n    \"DateFrom\": \"2024-02-15\",\n    \"DateTo\": \"2024-02-21\"\n}"
+						},
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Merchant/Statement",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Merchant",
+								"Statement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "5. Transactions (merchant api)",
 					"id": "10380885-43b21de4-2783-4b7e-b65a-ddd9bb6d6dee",
 					"protocolProfileBehavior": {
