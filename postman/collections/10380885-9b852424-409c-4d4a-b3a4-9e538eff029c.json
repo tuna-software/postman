@@ -4055,7 +4055,7 @@
 					"response": []
 				},
 				{
-					"name": "4. Statement (merchant api) Copy",
+					"name": "4. ConsolidatedStatement (merchant api)",
 					"id": "10380885-29eb46da-0c36-4476-9db4-183e6cf62e8a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
