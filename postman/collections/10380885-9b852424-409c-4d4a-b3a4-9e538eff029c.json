@@ -2223,7 +2223,8 @@
 									"}"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -2231,11 +2232,19 @@
 							"script": {
 								"id": "be927e3c-884d-47bc-8bea-a88b5155c4d5",
 								"exec": [
-									"var value = pm.collectionVariables.get(\"partneruniqueid\");\r",
-									"pm.collectionVariables.set(\"partneruniqueid\", parseInt(value)+2);"
+									"// Ensure partner unique ID is incremented\r",
+									"var partnerUniqueId = pm.collectionVariables.get(\"partneruniqueid\");\r",
+									"if (partnerUniqueId) {\r",
+									"    // Increment and set the new value\r",
+									"    pm.collectionVariables.set(\"partneruniqueid\", parseInt(partnerUniqueId) + 2);\r",
+									"} else {\r",
+									"    console.error(\"partneruniqueid is not defined in collection variables.\");\r",
+									"}\r",
+									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
