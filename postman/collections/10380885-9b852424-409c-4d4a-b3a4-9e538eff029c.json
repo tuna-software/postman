@@ -1412,7 +1412,8 @@
 											"pm.collectionVariables.set(\"sessionid\", jsonData.sessionId);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								},
 								{
@@ -1427,7 +1428,8 @@
 											"pm.collectionVariables.set(\"partneruniqueid\", puid);"
 										],
 										"type": "text/javascript",
-										"packages": {}
+										"packages": {},
+										"requests": {}
 									}
 								}
 							],
@@ -1446,7 +1448,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{ \r\n  \"Customer\": {\r\n    \"ID\": \"{{customerId}}\",\r\n    \"Name\": \"{{customerName}}\",\r\n    \"Email\": \"{{customerEmail}}\"\r\n  },\r\n  \"PaymentAccount\": \"{{x-tuna-account}}\",\r\n  \"partneruniqueid\": \"{{partneruniqueid}}\"\r\n}"
+									"raw": "{ \r\n  \"Customer\": {\r\n    \"ID\": \"{{customerId}}\",\r\n    \"Name\": \"{{customerName}}\",\r\n    \"Email\": \"{{customerEmail}}\"\r\n  },\r\n  \"PaymentAccount\": \"{{x-tuna-account}}\",\r\n  \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n  \"Is3dsTest\": true\r\n}"
 								},
 								"url": {
 									"raw": "https://token.tunagateway.com/api/Token/NewSession",
