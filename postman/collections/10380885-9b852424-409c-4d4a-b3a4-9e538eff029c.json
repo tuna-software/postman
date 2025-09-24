@@ -4244,9 +4244,10 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c2c20acd-d440-41b0-bf7d-6836ed791fd7",
+				"id": "450b07f8-d560-4a24-9f62-4054828b29bb",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
 					"pm.collectionVariables.set(\"randomCNPJ\", Array.from({length: 12}, () => Math.floor(Math.random() * 9 + 1)).concat([0,0,0,0]).map((v,i,a) => v + (i<12?(a[12]+=2*v*(13-i)%11,-1):(i==12?(a[12]=a[12]%11>1?11-a[12]%11:0,-1):a[13]+=v*(14-i)%11,-1))).join('').replace(/-1/g, '').replace(/(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})/, \"$1.$2.$3/$4-$5\"));\r",
 					"\r",
@@ -4282,9 +4283,10 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7164f6e9-ae8b-45c7-a4ba-705db8d66b21",
+				"id": "46da3cb5-9261-453d-b755-00e8e4ed1917",
 				"type": "text/javascript",
 				"packages": {},
+				"requests": {},
 				"exec": [
 					""
 				]
@@ -4294,103 +4296,83 @@
 	"variable": [
 		{
 			"key": "Code",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "ReferenceId\n",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "TransactionId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "partneruniqueid",
-			"value": "12345",
-			"type": "string"
+			"value": "12345"
 		},
 		{
 			"key": "sessionid",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "cardtoken",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "paymentKey",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "document",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "documentType",
-			"value": "CPF",
-			"type": "string"
+			"value": "CPF"
 		},
 		{
 			"key": "amount",
-			"value": "1",
-			"type": "string"
+			"value": "1"
 		},
 		{
 			"key": "customerName",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "customerEmail",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "customerId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "randomCNPJ",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "randomCep",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "randomState",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "useRealDocument",
-			"value": "false",
-			"type": "string"
+			"value": "false"
 		},
 		{
 			"key": "realDocument",
-			"value": "087.145.977-99",
-			"type": "string"
+			"value": "087.145.977-99"
 		},
 		{
 			"key": "realDocumentType",
-			"value": "CPF",
-			"type": "string"
+			"value": "CPF"
 		},
 		{
 			"key": "paymentId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
 			"key": "ReferenceId",
@@ -4398,8 +4380,7 @@
 		},
 		{
 			"key": "reusablePartnerUniqueId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
