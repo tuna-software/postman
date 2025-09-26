@@ -3947,7 +3947,7 @@
 					"response": [
 						{
 							"id": "10380885-a55000eb-da59-4870-b48f-b916cd458a64",
-							"name": "1. Register (merchant api)",
+							"name": "Very minimal",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
