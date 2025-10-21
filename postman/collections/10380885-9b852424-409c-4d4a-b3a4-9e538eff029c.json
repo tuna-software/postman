@@ -387,7 +387,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -398,7 +399,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -416,7 +418,7 @@
 							},
 							{
 								"key": "x-tuna-account",
-								"value": "{{token account}}"
+								"value": "{{x-tuna-account}}"
 							}
 						],
 						"body": {
