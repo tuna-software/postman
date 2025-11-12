@@ -4310,7 +4310,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "abc1d742-a74e-47fe-8540-838fd0da47ee",
+				"id": "3f9f0cf2-444d-4656-900e-50e1a6ae2913",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -4341,7 +4341,7 @@
 					"var states = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];\r",
 					"var state = states[Math.floor(Math.random() * states.length)];\r",
 					"pm.collectionVariables.set(\"randomState\", state);\r",
-					"\r",
+					"pm.collectionVariables.set(\")\r",
 					""
 				]
 			}
@@ -4349,7 +4349,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "eca82397-7390-43f1-9a5f-c935dda164a0",
+				"id": "a3c310a7-4bd1-4ce5-9cbf-4b6fc95f155f",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
