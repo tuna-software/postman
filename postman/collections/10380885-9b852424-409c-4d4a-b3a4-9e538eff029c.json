@@ -4310,7 +4310,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "fd64106f-4720-481a-820b-2805fd509be7",
+				"id": "3f2e54e5-031d-4a63-95ca-a25e4d160ed3",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -4341,7 +4341,7 @@
 					"var states = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];\r",
 					"var state = states[Math.floor(Math.random() * states.length)];\r",
 					"pm.collectionVariables.set(\"randomState\", state);\r",
-					"pm.collectionVariables.set(\"partneruniqueid\", {{$rand}})\r",
+					"pm.collectionVariables.set(\"partneruniqueid\", \"{{$randomUUID}})\r",
 					""
 				]
 			}
@@ -4349,7 +4349,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "619b55e2-740d-4a1d-a853-6ec828ece4c0",
+				"id": "ad0df6bf-1055-4504-a18b-4c2147fc0e7e",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
