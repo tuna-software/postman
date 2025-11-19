@@ -3803,6 +3803,70 @@
 					"response": []
 				},
 				{
+					"name": "11. Function - BPNL Availability (engine api)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-3d03ed0e-fddf-4a4b-b747-8327e56decbe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"FunctionName\": \"KoinOptions\",\n  \"Args\": {\n    \"JsonString\": \"{\\\"store\\\":{\\\"code\\\":\\\"SBXSTORE\\\"},\\\"transaction\\\":{\\\"reference_id\\\":\\\"REF0000001\\\",\\\"business_id\\\":\\\"BIZ0000001\\\",\\\"account\\\":\\\"SBX000\\\",\\\"amount\\\":{\\\"currency_code\\\":\\\"BRL\\\",\\\"value\\\":200}},\\\"country_code\\\":\\\"BR\\\",\\\"payment_method\\\":{\\\"code\\\":\\\"BNPL\\\"},\\\"payer\\\":{\\\"document\\\":{\\\"type\\\":\\\"cpf\\\",\\\"number\\\":\\\"54672396002\\\"},\\\"email\\\":\\\"jhon_doe@domain.com\\\"},\\\"ip_address\\\":\\\"192.0.2.146\\\",\\\"device_fingerprint\\\":\\\"3f139f92d30d54f1aaf519b3a39a20814\\\",\\\"items\\\":[]}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Payment/Function",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Payment",
+								"Function"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "10. Payment Methods (engine api) Copy",
 					"event": [
 						{
@@ -3862,70 +3926,6 @@
 								"api",
 								"Partner",
 								"GetAvailablePaymentMethodTypes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "11. Function - BPNL Availability (engine api)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "10380885-3d03ed0e-fddf-4a4b-b747-8327e56decbe",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "x-tuna-account",
-								"value": "{{x-tuna-account}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"FunctionName\": \"KoinOptions\",\n  \"Args\": {\n    \"JsonString\": \"{\\\"store\\\":{\\\"code\\\":\\\"SBXSTORE\\\"},\\\"transaction\\\":{\\\"reference_id\\\":\\\"REF0000001\\\",\\\"business_id\\\":\\\"BIZ0000001\\\",\\\"account\\\":\\\"SBX000\\\",\\\"amount\\\":{\\\"currency_code\\\":\\\"BRL\\\",\\\"value\\\":200}},\\\"country_code\\\":\\\"BR\\\",\\\"payment_method\\\":{\\\"code\\\":\\\"BNPL\\\"},\\\"payer\\\":{\\\"document\\\":{\\\"type\\\":\\\"cpf\\\",\\\"number\\\":\\\"54672396002\\\"},\\\"email\\\":\\\"jhon_doe@domain.com\\\"},\\\"ip_address\\\":\\\"192.0.2.146\\\",\\\"device_fingerprint\\\":\\\"3f139f92d30d54f1aaf519b3a39a20814\\\",\\\"items\\\":[]}\"\n  }\n}"
-						},
-						"url": {
-							"raw": "https://engine.tunagateway.com/api/Payment/Function",
-							"protocol": "https",
-							"host": [
-								"engine",
-								"tunagateway",
-								"com"
-							],
-							"path": [
-								"api",
-								"Payment",
-								"Function"
 							]
 						}
 					},
