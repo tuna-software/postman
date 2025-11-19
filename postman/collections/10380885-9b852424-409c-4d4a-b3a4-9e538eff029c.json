@@ -3877,7 +3877,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -3888,7 +3889,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -3898,7 +3900,7 @@
 						"disabledSystemHeaders": {}
 					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -3914,8 +3916,17 @@
 								"disabled": true
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"TokenSession\": \"{{sessionid}}\",\n    \"Customer\": {\n        \"Document\": \"58188896454\"\n    },\n    \"PaymentData\": {\n        \"Amount\": 2000,\n        \"Countrycode\": \"BR\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://engine.tunagateway.com/api/Partner/GetAvailablePaymentMethodTypes",
+							"raw": "https://engine.tunagateway.com/api/Payment/PaymentOptions",
 							"protocol": "https",
 							"host": [
 								"engine",
@@ -3924,8 +3935,8 @@
 							],
 							"path": [
 								"api",
-								"Partner",
-								"GetAvailablePaymentMethodTypes"
+								"Payment",
+								"PaymentOptions"
 							]
 						}
 					},
