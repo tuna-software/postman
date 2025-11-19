@@ -3803,6 +3803,71 @@
 					"response": []
 				},
 				{
+					"name": "10. Payment Methods (engine api) Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6ed7f05c-7344-4aac-a088-812092c23485",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a4427f83-e410-4256-a676-dde44f368ad4",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-745b20bf-15c4-4c57-94d0-8ece5a374edf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Partner/GetAvailablePaymentMethodTypes",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Partner",
+								"GetAvailablePaymentMethodTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "11. Function - BPNL Availability (engine api)",
 					"event": [
 						{
