@@ -4426,14 +4426,72 @@
 			"name": "Frontend Calls",
 			"item": [
 				{
-					"name": "Status",
-					"id": "10380885-48cd01d1-a774-41e9-bb5b-4978e1e06f02",
+					"name": "https://token.tunagateway.com/api/integrations/plugin/StatusPoll",
+					"id": "10380885-9a56d83d-f4bc-48ea-bd41-31cf1425ec31",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"macOS\""
+							},
+							{
+								"key": "Referer",
+								"value": "https://checkout.tunagateway.com/?pid=1650&rid=4773f6d5-8e17-4ada-a114-87ecc18e838d&sid=44&lng=pt"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Content-type",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "x-tuna-token-session",
+								"value": "O9qgtE4N67vftc/HJPgWdtLvks5PKD1fYyAiT8PoTh0mm/bZMo1zIifhaQY/9uKzxY2Y7rwnMxJop72eIqvdF0TU5Oxr/iE6UKy867bx7psLpjfjkj1LVDdEesO/XQuG8ey43/hvjn9x/D4="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"MethodID\":0,\"PaymentStatusList\":[\"2\",\"8\",\"4\",\"5\",\"A\",\"N\"],\"PaymentKey\":\"13502410001EB01\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://token.tunagateway.com/api/integrations/plugin/StatusPoll",
+							"protocol": "https",
+							"host": [
+								"token",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"integrations",
+								"plugin",
+								"StatusPoll"
+							]
+						},
+						"description": "Generated from cURL: curl 'https://token.tunagateway.com/api/integrations/plugin/StatusPoll' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'Referer: https://checkout.tunagateway.com/?pid=1650&rid=4773f6d5-8e17-4ada-a114-87ecc18e838d&sid=44&lng=pt' \\\n  -H 'sec-ch-ua: \"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36' \\\n  -H 'DNT: 1' \\\n  -H 'Content-type: application/json; charset=UTF-8' \\\n  -H 'x-tuna-token-session: O9qgtE4N67vftc/HJPgWdtLvks5PKD1fYyAiT8PoTh0mm/bZMo1zIifhaQY/9uKzxY2Y7rwnMxJop72eIqvdF0TU5Oxr/iE6UKy867bx7psLpjfjkj1LVDdEesO/XQuG8ey43/hvjn9x/D4=' \\\n  --data-raw '{\"MethodID\":0,\"PaymentStatusList\":[\"2\",\"8\",\"4\",\"5\",\"A\",\"N\"],\"PaymentKey\":\"13502410001EB01\"}'"
 					},
 					"response": []
 				}
