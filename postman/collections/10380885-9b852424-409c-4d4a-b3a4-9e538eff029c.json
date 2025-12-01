@@ -4426,7 +4426,7 @@
 			"name": "Frontend Calls",
 			"item": [
 				{
-					"name": "https://token.tunagateway.com/api/integrations/plugin/StatusPoll",
+					"name": "StatusPoll",
 					"id": "10380885-9a56d83d-f4bc-48ea-bd41-31cf1425ec31",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
