@@ -4426,7 +4426,7 @@
 			"name": "Frontend Calls",
 			"item": [
 				{
-					"name": "Init",
+					"name": "Status",
 					"id": "10380885-48cd01d1-a774-41e9-bb5b-4978e1e06f02",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
