@@ -5133,7 +5133,7 @@
 				}
 			],
 			"id": "10380885-d9f18380-bcdd-40c9-af8d-0b33c3a0e5c8",
-			"description": "Complete subscription management workflow"
+			"description": "Development collection for testing Tuna Subscription API on localhost:5267.\n\n## Subscription Management\n\nThis collection provides comprehensive testing for all subscription-related operations:\n\n- **Subscription Lifecycle**: Initialize, update, pause, resume, and cancel subscriptions\n    \n- **Invoice Management**: List and retrieve invoice details with pagination and sorting\n    \n- **Subscriber Management**: Get and update subscriber information\n    \n\n## Authentication\n\nAll requests use:\n\n- x-tuna-apptoken header for token authentication (collection-level)\n    \n- x-tuna-account header for account identification (request-level)"
 		}
 	],
 	"auth": {
