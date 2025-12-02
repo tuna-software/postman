@@ -4497,6 +4497,643 @@
 				}
 			],
 			"id": "10380885-371229ac-de36-4028-a6af-64c7b558fd15"
+		},
+		{
+			"name": "Subscription Copy",
+			"item": [
+				{
+					"name": "0.1. New Session (token api)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "534dd2a2-4ef9-4146-bef3-5f1e24ee3693",
+								"exec": [
+									"var jsonData = JSON.parse(pm.response.text() );\r",
+									"pm.collectionVariables.set(\"sessionid\", jsonData.sessionId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0c390071-6fcb-4c1b-baf2-951129b2d91e",
+								"exec": [
+									"pm.collectionVariables.set(\"customerName\", \"{{$randomFirstName}} {{$randomLastName}}\");\r",
+									"pm.collectionVariables.set(\"customerEmail\", \"{{$randomEmail}}\");\r",
+									"pm.collectionVariables.set(\"customerId\", \"{{$randomUUID}}\");\r",
+									"var puid = \"{{$randomUUID}}\";\r",
+									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-8cc0d151-2985-4789-af2f-421c990b9ca1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"Customer\": {\r\n    \"ID\": \"{{customerId}}\",\r\n    \"Name\": \"{{customerName}}\",\r\n    \"Email\": \"{{customerEmail}}\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "https://token.tunagateway.com/api/Token/NewSession",
+							"protocol": "https",
+							"host": [
+								"token",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Token",
+								"NewSession"
+							]
+						},
+						"description": "First step is generating a new session.\n\nThe sessionId will be stored into a variable that's going to be used by the other requests in this collection(that need a sessionId)."
+					},
+					"response": []
+				},
+				{
+					"name": "0.2. Generate (token api)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "534dd2a2-4ef9-4146-bef3-5f1e24ee3693",
+								"exec": [
+									"var jsonData = JSON.parse(pm.response.text() );\r",
+									"pm.collectionVariables.set(\"cardtoken\", jsonData.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0c390071-6fcb-4c1b-baf2-951129b2d91e",
+								"exec": [
+									"pm.collectionVariables.set(\"customerName\", \"{{$randomFirstName}} {{$randomLastName}}\");\r",
+									"pm.collectionVariables.set(\"customerEmail\", \"{{$randomEmail}}\");\r",
+									"pm.collectionVariables.set(\"customerId\", \"{{$randomUUID}}\");\r",
+									"var puid = \"{{$randomUUID}}\";\r",
+									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-69d33bd7-a82e-41a1-8f22-4c678951db72",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"SessionId\": \"{{sessionid}}\",\r\n    \"Card\": {\r\n        \"CardNumber\": \"4111111111111111\",\r\n        \"CardHolderName\": \"Authorized\",\r\n        \"ExpirationMonth\": 6,\r\n        \"ExpirationYear\": 2032,\r\n        \"CVV\": \"123\",\r\n        \"SingleUse\": false\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://token.tunagateway.com/api/Token/Generate",
+							"protocol": "https",
+							"host": [
+								"token",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Token",
+								"Generate"
+							]
+						},
+						"description": "First step is generating a new session.\n\nThe sessionId will be stored into a variable that's going to be used by the other requests in this collection(that need a sessionId)."
+					},
+					"response": []
+				},
+				{
+					"name": "1. Init Subscription",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3206a8fd-7d0d-4b06-a107-3af3f466d1b9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "353380c4-1b7b-4c69-bc39-8eac3d28b9aa",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());",
+									"if (jsondata.subscription.subscriptionKey != null) {",
+									"    pm.collectionVariables.set(\"subscriptionKey\", jsondata.subscription.subscriptionKey);",
+									"}",
+									"if (jsondata.paymentKey != null) {",
+									"    pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);",
+									"}",
+									"if (jsondata.subscription.subscriberId!= null) {",
+									"    pm.collectionVariables.set(\"subscriberId\", jsondata.subscription.subscriberId);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "10380885-2cd768f3-2fdb-4151-b3d4-8805696b5b99",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"TokenSession\": \"{{sessionid}}\",\n    \"partnerUniqueId\": \"{{partnerUniqueId}}\",\n    \"customer\": {\n        \"name\": \"{{$randomFullName}}\",\n        \"email\": \"{{$randomEmail}}\",\n        \"document\": \"{{document}}\",\n        \"documentType\": \"{{documentType}}\",\n        \"phone\": \"{{$randomPhoneNumber}}\"\n    },\n    \"paymentItems\": {\n        \"items\": [\n            {\n                \"productDescription\": \"{{$randomProductName}}\",\n                \"amount\": {{amount}},\n                \"itemQuantity\": 1\n            }\n        ]\n    },\n    \"paymentData\": {\n        \"amount\": {{amount}},\n        \"paymentMethods\": [\n            {\n                \"paymentMethodType\": \"1\",\n                \"amount\": {{amount}},\n                \"installments\": 1,\n                \"cardinfo\": {\n                    \"token\": \"{{cardtoken}}\",\n                    \"tokenprovider\": \"Tuna\",\n                    \"billinginfo\": {\n                        \"number\": \"{{$randomInt}}\",\n                        \"name\": \"{{customerName}}\",\n                        \"phone\": \"{{$randomPhoneNumber}}\",\n                        \"taxedamount\": {{amount}},\n                        \"billedamount\": {{amount}},\n                        \"address\": {\n                            \"street\": \"{{$randomStreetName}}\",\n                            \"number\": \"{{$randomInt}}\",\n                            \"complement\": \"{{$randomStreetAddress}}\",\n                            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\n                            \"city\": \"{{$randomCity}}\",\n                            \"state\": \"RJ\",\n                            \"country\": \"BR\",\n                            \"postalcode\": \"22470-240\",\n                            \"phone\": \"{{$randomPhoneNumber}}\"\n                        }\n                    },\n                    \"savecard\": false\n                }\n            }\n        ],\n        \"deliveryaddress\": {\n            \"street\": \"{{$randomStreetName}}\",\n            \"number\": \"{{$randomInt}}\",\n            \"complement\": \"{{$randomStreetAddress}}\",\n            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\n            \"city\": \"{{$randomCity}}\",\n            \"state\": \"RJ\",\n            \"country\": \"BR\",\n            \"postalcode\": \"22470-240\",\n            \"phone\": \"{{$randomPhoneNumber}}\"\n        },\n        \"countrycode\": \"BR\",\n        \"currency\": \"BRL\"\n    },\n    \"subscription\": {\n        \"description\": \"{{$randomProductName}} Subscription\",\n        \"interval\": {\n            \"intervalType\": \"month\",\n            \"intervalQuantity\": 1\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get Subscription Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "abf725c9-9a17-4757-8d7f-3199f49e097c",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());",
+									"if (jsondata.subscription.subscriberId != null) {",
+									"    pm.collectionVariables.set(\"subscriberId\", jsondata.subscription.subscriberId);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "10380885-b4abccdc-ed28-41e4-9b72-3cbd464cdcb8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions/{{subscriptionKey}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"{{subscriptionKey}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Update Subscription Items",
+					"id": "10380885-3f562694-d271-4663-ab0f-1cd4fbdf3b4b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [{\n        \"description\": \"{{$randomProductName}} (Updated)\",\n        \"amount\": 129.90,\n        \"quantity\": 1\n    }]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions/{{subscriptionKey}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"{{subscriptionKey}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Pause Subscription",
+					"id": "10380885-52a083fc-2f5a-4f17-ac66-041edc2c1be8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Customer requested temporary suspension\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions/{{subscriptionKey}}/pause",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"{{subscriptionKey}}",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Resume Subscription",
+					"id": "10380885-95119e47-e998-417e-8e82-6734017509e0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"chargeImmediately\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions/{{subscriptionKey}}/resume",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"{{subscriptionKey}}",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Cancel Subscription",
+					"id": "10380885-b3f217f1-9e46-4d1f-afca-3c0d43f18099",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Service no longer needed\",\n    \"cancelImmediately\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions/{{subscriptionKey}}/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions",
+								"{{subscriptionKey}}",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. List Invoices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44f7eee1-a3b9-43c6-aaa4-ac02e1a01cbd",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());",
+									"if (jsondata.invoices && jsondata.invoices.length > 0) {",
+									"    pm.collectionVariables.set(\"invoiceKey\", jsondata.invoices[0].invoiceKey);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "10380885-74507a49-d08c-4e3c-b64a-2af71607c313",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/invoices?subscriptionKey={{subscriptionKey}}&page=1&pageSize=20&sortBy=cycleNumber&sortDescending=true",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "subscriptionKey",
+									"value": "{{subscriptionKey}}"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "20"
+								},
+								{
+									"key": "sortBy",
+									"value": "cycleNumber"
+								},
+								{
+									"key": "sortDescending",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. Get Invoice Details",
+					"id": "10380885-5d94469a-f6e5-4709-a788-ad46ebf0a093",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/invoices/{{invoiceKey}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"{{invoiceKey}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. Get Subscriber by  ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc56c96e-c3f3-43f6-b67d-e3be1781e2a6",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());",
+									"if (jsondata.subscriberId != null) {",
+									"    pm.collectionVariables.set(\"subscriberId\", jsondata.subscriberId);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "10380885-dc94d35b-231c-4b18-bc42-397bea69692d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/subscribers/{{subscriberId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscribers",
+								"{{subscriberId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. Update Subscriber",
+					"id": "10380885-6070ef72-7ced-475c-bb03-ade18ad2889a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomFirstName}} {{$randomLastName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/subscribers/{{subscriberId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscribers",
+								"{{subscriberId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. List Subscriptions",
+					"id": "10380885-d74de51d-8d52-4209-8a64-6683f56ee528",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "string"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/subscriptions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"subscriptions"
+							],
+							"query": [
+								{
+									"key": "partnerUniqueId",
+									"value": "2f9ef705-1376-458f-855f-4fab3c978f99",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "paused",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "10380885-d9f18380-bcdd-40c9-af8d-0b33c3a0e5c8",
+			"description": "Complete subscription management workflow"
 		}
 	],
 	"auth": {
