@@ -5297,6 +5297,14 @@
 			"key": "baseUrl",
 			"value": "",
 			"type": "default"
+		},
+		{
+			"key": "subscriptionKey",
+			"value": ""
+		},
+		{
+			"key": "subscriberId",
+			"value": ""
 		}
 	]
 }
