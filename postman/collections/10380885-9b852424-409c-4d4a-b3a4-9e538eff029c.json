@@ -4568,7 +4568,7 @@
 					"response": []
 				},
 				{
-					"name": "0.2. Generate (token api)",
+					"name": "2. Generate (token api) Copy",
 					"event": [
 						{
 							"listen": "test",
@@ -4579,8 +4579,7 @@
 									"pm.collectionVariables.set(\"cardtoken\", jsonData.token);"
 								],
 								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
+								"packages": {}
 							}
 						},
 						{
@@ -4595,12 +4594,11 @@
 									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
 								],
 								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
+								"packages": {}
 							}
 						}
 					],
-					"id": "10380885-69d33bd7-a82e-41a1-8f22-4c678951db72",
+					"id": "10380885-b54d58cf-8763-4d0f-9dd7-9b207399b94b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
@@ -5130,72 +5128,6 @@
 								}
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "2. Generate (token api) Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "534dd2a2-4ef9-4146-bef3-5f1e24ee3693",
-								"exec": [
-									"var jsonData = JSON.parse(pm.response.text() );\r",
-									"pm.collectionVariables.set(\"cardtoken\", jsonData.token);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "0c390071-6fcb-4c1b-baf2-951129b2d91e",
-								"exec": [
-									"pm.collectionVariables.set(\"customerName\", \"{{$randomFirstName}} {{$randomLastName}}\");\r",
-									"pm.collectionVariables.set(\"customerEmail\", \"{{$randomEmail}}\");\r",
-									"pm.collectionVariables.set(\"customerId\", \"{{$randomUUID}}\");\r",
-									"var puid = \"{{$randomUUID}}\";\r",
-									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "10380885-b54d58cf-8763-4d0f-9dd7-9b207399b94b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"SessionId\": \"{{sessionid}}\",\r\n    \"Card\": {\r\n        \"CardNumber\": \"4111111111111111\",\r\n        \"CardHolderName\": \"Authorized\",\r\n        \"ExpirationMonth\": 6,\r\n        \"ExpirationYear\": 2032,\r\n        \"CVV\": \"123\",\r\n        \"SingleUse\": false\r\n    }\r\n}"
-						},
-						"url": {
-							"raw": "https://token.tunagateway.com/api/Token/Generate",
-							"protocol": "https",
-							"host": [
-								"token",
-								"tunagateway",
-								"com"
-							],
-							"path": [
-								"api",
-								"Token",
-								"Generate"
-							]
-						},
-						"description": "First step is generating a new session.\n\nThe sessionId will be stored into a variable that's going to be used by the other requests in this collection(that need a sessionId)."
 					},
 					"response": []
 				}
