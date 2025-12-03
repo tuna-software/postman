@@ -4568,7 +4568,7 @@
 					"response": []
 				},
 				{
-					"name": "2. Generate (token api) Copy",
+					"name": "0.2. Generate (token api)",
 					"event": [
 						{
 							"listen": "test",
