@@ -4579,7 +4579,8 @@
 									"pm.collectionVariables.set(\"cardtoken\", jsonData.token);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -4594,7 +4595,8 @@
 									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
