@@ -4935,7 +4935,7 @@
 					"response": []
 				},
 				{
-					"name": "6. Cancel Subscription Copy",
+					"name": "6. Cancel Subscription",
 					"id": "10380885-d92014b6-b523-46b0-898a-1ff83d533e69",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4973,7 +4973,7 @@
 					"response": []
 				},
 				{
-					"name": "7. List Invoices Copy",
+					"name": "7. List Invoices",
 					"event": [
 						{
 							"listen": "test",
@@ -5049,7 +5049,7 @@
 					"response": []
 				},
 				{
-					"name": "8. Get Invoice Details Copy",
+					"name": "8. Get Invoice Details",
 					"id": "10380885-3898fa86-c9ff-463c-8ad8-9a0ab6902273",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
