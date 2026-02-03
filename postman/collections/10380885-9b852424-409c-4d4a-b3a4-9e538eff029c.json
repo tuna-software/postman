@@ -4821,7 +4821,7 @@
 					"response": []
 				},
 				{
-					"name": "3. Update Subscription Items Copy",
+					"name": "3. Update Subscription Items",
 					"id": "10380885-d2c2f118-fdc3-4a2a-bc7a-15117bc3a607",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4858,7 +4858,7 @@
 					"response": []
 				},
 				{
-					"name": "4. Pause Subscription Copy",
+					"name": "4. Pause Subscription",
 					"id": "10380885-3795bbcb-96da-46f5-8950-b14bd0a1f7fa",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4896,7 +4896,7 @@
 					"response": []
 				},
 				{
-					"name": "5. Resume Subscription Copy",
+					"name": "5. Resume Subscription",
 					"id": "10380885-9ce2d248-3a99-42fa-9e3e-a8c057b5dd59",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
