@@ -4636,7 +4636,7 @@
 					"response": []
 				},
 				{
-					"name": "0.2. Generate (test data) Copy",
+					"name": "0.2. Generate (test data)",
 					"event": [
 						{
 							"listen": "test",
@@ -4647,7 +4647,8 @@
 									"pm.collectionVariables.set(\"cardtoken\", jsonData.token);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -4662,7 +4663,8 @@
 									"pm.collectionVariables.set(\"partneruniqueid\", puid);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
