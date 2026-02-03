@@ -4704,7 +4704,7 @@
 					"response": []
 				},
 				{
-					"name": "1. Init Subscription Copy",
+					"name": "1. Init Subscription",
 					"event": [
 						{
 							"listen": "prerequest",
