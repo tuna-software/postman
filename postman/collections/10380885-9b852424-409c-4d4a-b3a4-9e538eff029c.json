@@ -5078,7 +5078,7 @@
 					"response": []
 				},
 				{
-					"name": "9. Get Subscriber by  ID Copy",
+					"name": "9. Get Subscriber by  ID",
 					"event": [
 						{
 							"listen": "test",
@@ -5124,7 +5124,7 @@
 					"response": []
 				},
 				{
-					"name": "10. Update Subscriber Copy",
+					"name": "10. Update Subscriber",
 					"id": "10380885-41f28595-1655-4a51-9ad9-7d482e263123",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -5161,7 +5161,7 @@
 					"response": []
 				},
 				{
-					"name": "11. List Subscriptions Copy",
+					"name": "11. List Subscriptions",
 					"id": "10380885-4dbaf9cb-07b2-417b-bdff-58f94f21a892",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
