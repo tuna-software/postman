@@ -4502,7 +4502,7 @@
 			"name": "Subscriptions",
 			"item": [
 				{
-					"name": "0.1. New Session (token api) Copy",
+					"name": "0.1. New Session (token api)",
 					"event": [
 						{
 							"listen": "test",
@@ -4568,7 +4568,7 @@
 					"response": []
 				},
 				{
-					"name": "0.2. Generate (token api) Copy",
+					"name": "0.2. Generate (token api)",
 					"event": [
 						{
 							"listen": "test",
@@ -4775,7 +4775,7 @@
 					"response": []
 				},
 				{
-					"name": "2. Get Subscription Details Copy",
+					"name": "2. Get Subscription Details",
 					"event": [
 						{
 							"listen": "test",
