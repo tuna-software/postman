@@ -5642,6 +5642,11 @@
 			"key": "amount_method_2",
 			"value": "",
 			"type": "default"
+		},
+		{
+			"key": "amount_method_1",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
