@@ -5637,6 +5637,11 @@
 		{
 			"key": "invoiceKey",
 			"value": ""
+		},
+		{
+			"key": "amount_method_2",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
