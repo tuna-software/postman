@@ -377,7 +377,7 @@
 					"response": []
 				},
 				{
-					"name": "2. Init Payment (engine api) Copy",
+					"name": "2. Init Payment 2 cards (engine api)",
 					"event": [
 						{
 							"listen": "test",
