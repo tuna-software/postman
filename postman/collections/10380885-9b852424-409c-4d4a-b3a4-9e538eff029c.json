@@ -5647,6 +5647,16 @@
 			"key": "amount_method_1",
 			"value": "",
 			"type": "default"
+		},
+		{
+			"key": "halfamount",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "totalamount",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
