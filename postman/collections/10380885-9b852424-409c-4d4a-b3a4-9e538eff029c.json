@@ -3300,6 +3300,46 @@
 					"response": []
 				},
 				{
+					"name": "3. Cancel Method 2 (engine api)",
+					"id": "10380885-45728b03-faa7-4581-be87-5c0179056fe9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paymentKey\": \"{{paymentKey}}\",\n    \"CardsDetail\": [\n        {\n            \"MethodId\": 0,\n            \"Amount\": {{amount}}\n        }\n    ],\n    \"CancelAll\": false\n}"
+						},
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Payment/Cancel",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Payment",
+								"Cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "4. Cancel Item (engine api)",
 					"id": "10380885-2e1e8b12-635d-480e-998a-933d32426fe8",
 					"protocolProfileBehavior": {
