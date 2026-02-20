@@ -3340,8 +3340,8 @@
 					"response": []
 				},
 				{
-					"name": "3. Cancel Method (engine api) Copy",
-					"id": "10380885-1f26b34f-cdc5-4cd2-b35b-eee0574c58f3",
+					"name": "4. Cancel Item (engine api)",
+					"id": "10380885-2e1e8b12-635d-480e-998a-933d32426fe8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -3360,10 +3360,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"paymentKey\": \"{{paymentKey}}\",\n    \"CardsDetail\": [\n        {\n            \"MethodId\": 0,\n            \"Amount\": {{amount}}\n        }\n    ],\n    \"CancelAll\": false\n}"
+							"raw": "{\n    \"paymentKey\": \"{{paymentKey}}\",\n    \"itemsDetail\": [\n        {\n            \"itemQuantity\": 1,\n            \"detailUniqueId\": \"{{detailUniqueID}}\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "https://engine.tunagateway.com/api/Payment/Cancel",
+							"raw": "https://engine.tunagateway.com/api/Payment/CancelItem",
 							"protocol": "https",
 							"host": [
 								"engine",
@@ -3373,15 +3373,15 @@
 							"path": [
 								"api",
 								"Payment",
-								"Cancel"
+								"CancelItem"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "4. Cancel Item (engine api)",
-					"id": "10380885-2e1e8b12-635d-480e-998a-933d32426fe8",
+					"name": "4. Cancel Item (engine api) Copy",
+					"id": "10380885-083881ac-00b8-479e-9dca-3c2da085d675",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
