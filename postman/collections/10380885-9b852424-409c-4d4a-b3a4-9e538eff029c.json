@@ -983,7 +983,7 @@
 					"response": []
 				},
 				{
-					"name": "10. Init Payment 2 cards (engine api) Copy",
+					"name": "11. Init Payment card and pix(engine api)",
 					"event": [
 						{
 							"listen": "test",
