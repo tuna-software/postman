@@ -5661,6 +5661,11 @@
 			"key": "totalamount",
 			"value": "",
 			"type": "default"
+		},
+		{
+			"key": "detailUniqueID",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
