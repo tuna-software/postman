@@ -377,150 +377,6 @@
 					"response": []
 				},
 				{
-					"name": "2. Init Payment 2 cards (engine api)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
-								"exec": [
-									"var jsondata = JSON.parse(pm.response.text());\r",
-									"if (jsondata.paymentKey != null){\r",
-									"    if (jsondata.paymentKey.split(':') != null){\r",
-									"        pm.collectionVariables.set(\"paymentId\", jsondata.paymentKey.split(':')[1]);\r",
-									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
-									"    }else{\r",
-									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
-									"    }\r",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "10380885-35afeea4-24c5-4017-99a6-ff17e28ef2d2",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "x-tuna-account",
-								"value": "{{x-tuna-account}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"TokenSession\": \"{{sessionid}}\",\r\n    \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n    \"customer\": {\r\n        \"id\": \"{{customerId}}\",\r\n        \"name\": \"{{customerName}}\",\r\n        \"email\": \"{{$randomEmail}}\",\r\n        \"document\": \"{{document}}\",\r\n        \"documentType\": \"{{documentType}}\",\r\n        \"dayssinceregistration\": {{$randomInt}},\r\n        \"data\": {\r\n            \"phone\": \"{{$randomPhoneNumber}}\",\r\n            \"iscorporate\": {{$randomBoolean}},\r\n            \"tradename\": \"{{$randomCompanyName}}\",\r\n            \"corporatedocument\": \"{{randomCNPJ}}\",\r\n            \"createddate\": \"{{$randomDatePast}}\"\r\n        }\r\n    },\r\n    \"paymentItems\": {\r\n        \"items\": [\r\n            {\r\n                \"amount\": {{amount}},\r\n                \"detailUniqueId\": \"{{$randomInt}}\",\r\n                \"productDescription\": \"{{$randomProductName}}\",\r\n                \"itemQuantity\": 1                \r\n            }\r\n        ]\r\n    },\r\n    \"paymentdata\": {\r\n        \"paymentmethods\": [\r\n            {\r\n                \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n                \"paymentmethodtype\": \"1\",\r\n                \"amount\": {{amount}},\r\n                \"installments\": 1,\r\n                \"cardinfo\": {\r\n                    \"token\": \"{{cardtoken}}\",\r\n                    \"tokenprovider\": \"Tuna\",\r\n                    \"billinginfo\": {\r\n                        \"number\": \"{{$randomInt}}\",\r\n                        \"name\": \"{{customerName}}\",\r\n                        \"phone\": \"{{$randomPhoneNumber}}\",\r\n                        \"taxedamount\": {{amount}},\r\n                        \"billedamount\": {{amount}},\r\n                        \"address\": {\r\n                            \"street\": \"{{$randomStreetName}}\",\r\n                            \"number\": \"{{$randomInt}}\",\r\n                            \"complement\": \"{{$randomStreetAddress}}\",\r\n                            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n                            \"city\": \"{{$randomCity}}\",\r\n                            \"state\": \"{{randomState}}\",\r\n                            \"country\": \"BR\",\r\n                            \"postalcode\": \"{{randomCep}}\",\r\n                            \"phone\": \"{{$randomPhoneNumber}}\"\r\n                        }\r\n                    },\r\n                    \"savecard\": false\r\n                }\r\n            }\r\n        ],\r\n        \"deliveryaddress\": {\r\n            \"street\": \"{{$randomStreetName}}\",\r\n            \"number\": \"{{$randomInt}}\",\r\n            \"complement\": \"{{$randomStreetAddress}}\",\r\n            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n            \"city\": \"{{$randomCity}}\",\r\n            \"state\": \"{{randomState}}\",\r\n            \"country\": \"BR\",\r\n            \"postalcode\": \"{{randomCep}}\",\r\n            \"phone\": \"{{$randomPhoneNumber}}\"\r\n        },\r\n        \"countrycode\": \"BR\",\r\n        \"amount\": {{amount}},\r\n        \"currency\": \"BRL\"\r\n    },\r\n    \"frontdata\": {\r\n        \"useragent\": \"{{$randomUserAgent}}\",\r\n        \"IpAddress\": \"{{$randomIP}}\"\r\n    },\r\n    \"istest\": false,\r\n    \"isfromfrontend\": false\r\n}"
-						},
-						"url": {
-							"raw": "https://engine.tunagateway.com/api/Payment/Init",
-							"protocol": "https",
-							"host": [
-								"engine",
-								"tunagateway",
-								"com"
-							],
-							"path": [
-								"api",
-								"Payment",
-								"Init"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "2. Init Payment card + pix (engine api)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
-								"exec": [
-									"var jsondata = JSON.parse(pm.response.text());\r",
-									"if (jsondata.paymentKey != null){\r",
-									"    if (jsondata.paymentKey.split(':') != null){\r",
-									"        pm.collectionVariables.set(\"paymentId\", jsondata.paymentKey.split(':')[1]);\r",
-									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
-									"    }else{\r",
-									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
-									"    }\r",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "10380885-352886e1-42df-49d1-b215-1a8d84593a79",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "x-tuna-account",
-								"value": "{{x-tuna-account}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"TokenSession\": \"{{sessionid}}\",\r\n    \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n    \"customer\": {\r\n        \"id\": \"{{customerId}}\",\r\n        \"name\": \"{{customerName}}\",\r\n        \"email\": \"{{$randomEmail}}\",\r\n        \"document\": \"{{document}}\",\r\n        \"documentType\": \"{{documentType}}\",\r\n        \"dayssinceregistration\": {{$randomInt}},\r\n        \"data\": {\r\n            \"phone\": \"{{$randomPhoneNumber}}\",\r\n            \"iscorporate\": {{$randomBoolean}},\r\n            \"tradename\": \"{{$randomCompanyName}}\",\r\n            \"corporatedocument\": \"{{randomCNPJ}}\",\r\n            \"createddate\": \"{{$randomDatePast}}\"\r\n        }\r\n    },\r\n    \"paymentItems\": {\r\n        \"items\": [\r\n            {\r\n                \"amount\": {{amount}},\r\n                \"detailUniqueId\": \"{{$randomInt}}\",\r\n                \"productDescription\": \"{{$randomProductName}}\",\r\n                \"itemQuantity\": 1                \r\n            }\r\n        ]\r\n    },\r\n    \"paymentdata\": {\r\n        \"paymentmethods\": [\r\n            {\r\n                \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n                \"paymentmethodtype\": \"1\",\r\n                \"amount\": {{amount}},\r\n                \"installments\": 1,\r\n                \"cardinfo\": {\r\n                    \"token\": \"{{cardtoken}}\",\r\n                    \"tokenprovider\": \"Tuna\",\r\n                    \"billinginfo\": {\r\n                        \"number\": \"{{$randomInt}}\",\r\n                        \"name\": \"{{customerName}}\",\r\n                        \"phone\": \"{{$randomPhoneNumber}}\",\r\n                        \"taxedamount\": {{amount}},\r\n                        \"billedamount\": {{amount}},\r\n                        \"address\": {\r\n                            \"street\": \"{{$randomStreetName}}\",\r\n                            \"number\": \"{{$randomInt}}\",\r\n                            \"complement\": \"{{$randomStreetAddress}}\",\r\n                            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n                            \"city\": \"{{$randomCity}}\",\r\n                            \"state\": \"{{randomState}}\",\r\n                            \"country\": \"BR\",\r\n                            \"postalcode\": \"{{randomCep}}\",\r\n                            \"phone\": \"{{$randomPhoneNumber}}\"\r\n                        }\r\n                    },\r\n                    \"savecard\": false\r\n                }\r\n            }\r\n        ],\r\n        \"deliveryaddress\": {\r\n            \"street\": \"{{$randomStreetName}}\",\r\n            \"number\": \"{{$randomInt}}\",\r\n            \"complement\": \"{{$randomStreetAddress}}\",\r\n            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n            \"city\": \"{{$randomCity}}\",\r\n            \"state\": \"{{randomState}}\",\r\n            \"country\": \"BR\",\r\n            \"postalcode\": \"{{randomCep}}\",\r\n            \"phone\": \"{{$randomPhoneNumber}}\"\r\n        },\r\n        \"countrycode\": \"BR\",\r\n        \"amount\": {{amount}},\r\n        \"currency\": \"BRL\"\r\n    },\r\n    \"frontdata\": {\r\n        \"useragent\": \"{{$randomUserAgent}}\",\r\n        \"IpAddress\": \"{{$randomIP}}\"\r\n    },\r\n    \"istest\": false,\r\n    \"isfromfrontend\": false\r\n}"
-						},
-						"url": {
-							"raw": "https://engine.tunagateway.com/api/Payment/Init",
-							"protocol": "https",
-							"host": [
-								"engine",
-								"tunagateway",
-								"com"
-							],
-							"path": [
-								"api",
-								"Payment",
-								"Init"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "3. Capture (engine api)",
 					"event": [
 						{
@@ -1053,7 +909,151 @@
 					"response": []
 				},
 				{
-					"name": "10. Init Payment with Antifraud Custom data (engine api)",
+					"name": "10. Init Payment 2 cards (engine api)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());\r",
+									"if (jsondata.paymentKey != null){\r",
+									"    if (jsondata.paymentKey.split(':') != null){\r",
+									"        pm.collectionVariables.set(\"paymentId\", jsondata.paymentKey.split(':')[1]);\r",
+									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
+									"    }else{\r",
+									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
+									"    }\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-35afeea4-24c5-4017-99a6-ff17e28ef2d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TokenSession\": \"{{sessionid}}\",\r\n    \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n    \"customer\": {\r\n        \"id\": \"{{customerId}}\",\r\n        \"name\": \"{{customerName}}\",\r\n        \"email\": \"{{$randomEmail}}\",\r\n        \"document\": \"{{document}}\",\r\n        \"documentType\": \"{{documentType}}\",\r\n        \"dayssinceregistration\": {{$randomInt}},\r\n        \"data\": {\r\n            \"phone\": \"{{$randomPhoneNumber}}\",\r\n            \"iscorporate\": {{$randomBoolean}},\r\n            \"tradename\": \"{{$randomCompanyName}}\",\r\n            \"corporatedocument\": \"{{randomCNPJ}}\",\r\n            \"createddate\": \"{{$randomDatePast}}\"\r\n        }\r\n    },\r\n    \"paymentItems\": {\r\n        \"items\": [\r\n            {\r\n                \"amount\": {{amount}},\r\n                \"detailUniqueId\": \"{{$randomInt}}\",\r\n                \"productDescription\": \"{{$randomProductName}}\",\r\n                \"itemQuantity\": 1                \r\n            }\r\n        ]\r\n    },\r\n    \"paymentdata\": {\r\n        \"paymentmethods\": [\r\n            {\r\n                \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n                \"paymentmethodtype\": \"1\",\r\n                \"amount\": {{amount}},\r\n                \"installments\": 1,\r\n                \"cardinfo\": {\r\n                    \"token\": \"{{cardtoken}}\",\r\n                    \"tokenprovider\": \"Tuna\",\r\n                    \"billinginfo\": {\r\n                        \"number\": \"{{$randomInt}}\",\r\n                        \"name\": \"{{customerName}}\",\r\n                        \"phone\": \"{{$randomPhoneNumber}}\",\r\n                        \"taxedamount\": {{amount}},\r\n                        \"billedamount\": {{amount}},\r\n                        \"address\": {\r\n                            \"street\": \"{{$randomStreetName}}\",\r\n                            \"number\": \"{{$randomInt}}\",\r\n                            \"complement\": \"{{$randomStreetAddress}}\",\r\n                            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n                            \"city\": \"{{$randomCity}}\",\r\n                            \"state\": \"{{randomState}}\",\r\n                            \"country\": \"BR\",\r\n                            \"postalcode\": \"{{randomCep}}\",\r\n                            \"phone\": \"{{$randomPhoneNumber}}\"\r\n                        }\r\n                    },\r\n                    \"savecard\": false\r\n                }\r\n            }\r\n        ],\r\n        \"deliveryaddress\": {\r\n            \"street\": \"{{$randomStreetName}}\",\r\n            \"number\": \"{{$randomInt}}\",\r\n            \"complement\": \"{{$randomStreetAddress}}\",\r\n            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n            \"city\": \"{{$randomCity}}\",\r\n            \"state\": \"{{randomState}}\",\r\n            \"country\": \"BR\",\r\n            \"postalcode\": \"{{randomCep}}\",\r\n            \"phone\": \"{{$randomPhoneNumber}}\"\r\n        },\r\n        \"countrycode\": \"BR\",\r\n        \"amount\": {{amount}},\r\n        \"currency\": \"BRL\"\r\n    },\r\n    \"frontdata\": {\r\n        \"useragent\": \"{{$randomUserAgent}}\",\r\n        \"IpAddress\": \"{{$randomIP}}\"\r\n    },\r\n    \"istest\": false,\r\n    \"isfromfrontend\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Payment/Init",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Payment",
+								"Init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. Init Payment card + pix (engine api)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ddd2592a-1c74-4ada-944c-42c2a63bed54",
+								"exec": [
+									"var jsondata = JSON.parse(pm.response.text());\r",
+									"if (jsondata.paymentKey != null){\r",
+									"    if (jsondata.paymentKey.split(':') != null){\r",
+									"        pm.collectionVariables.set(\"paymentId\", jsondata.paymentKey.split(':')[1]);\r",
+									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
+									"    }else{\r",
+									"        pm.collectionVariables.set(\"paymentKey\", jsondata.paymentKey);\r",
+									"    }\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f49c2f87-1fa8-4df2-a0c9-87cd9a7110fd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-352886e1-42df-49d1-b215-1a8d84593a79",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-tuna-account",
+								"value": "{{x-tuna-account}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"TokenSession\": \"{{sessionid}}\",\r\n    \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n    \"customer\": {\r\n        \"id\": \"{{customerId}}\",\r\n        \"name\": \"{{customerName}}\",\r\n        \"email\": \"{{$randomEmail}}\",\r\n        \"document\": \"{{document}}\",\r\n        \"documentType\": \"{{documentType}}\",\r\n        \"dayssinceregistration\": {{$randomInt}},\r\n        \"data\": {\r\n            \"phone\": \"{{$randomPhoneNumber}}\",\r\n            \"iscorporate\": {{$randomBoolean}},\r\n            \"tradename\": \"{{$randomCompanyName}}\",\r\n            \"corporatedocument\": \"{{randomCNPJ}}\",\r\n            \"createddate\": \"{{$randomDatePast}}\"\r\n        }\r\n    },\r\n    \"paymentItems\": {\r\n        \"items\": [\r\n            {\r\n                \"amount\": {{amount}},\r\n                \"detailUniqueId\": \"{{$randomInt}}\",\r\n                \"productDescription\": \"{{$randomProductName}}\",\r\n                \"itemQuantity\": 1                \r\n            }\r\n        ]\r\n    },\r\n    \"paymentdata\": {\r\n        \"paymentmethods\": [\r\n            {\r\n                \"partneruniqueid\": \"{{partneruniqueid}}\",\r\n                \"paymentmethodtype\": \"1\",\r\n                \"amount\": {{amount}},\r\n                \"installments\": 1,\r\n                \"cardinfo\": {\r\n                    \"token\": \"{{cardtoken}}\",\r\n                    \"tokenprovider\": \"Tuna\",\r\n                    \"billinginfo\": {\r\n                        \"number\": \"{{$randomInt}}\",\r\n                        \"name\": \"{{customerName}}\",\r\n                        \"phone\": \"{{$randomPhoneNumber}}\",\r\n                        \"taxedamount\": {{amount}},\r\n                        \"billedamount\": {{amount}},\r\n                        \"address\": {\r\n                            \"street\": \"{{$randomStreetName}}\",\r\n                            \"number\": \"{{$randomInt}}\",\r\n                            \"complement\": \"{{$randomStreetAddress}}\",\r\n                            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n                            \"city\": \"{{$randomCity}}\",\r\n                            \"state\": \"{{randomState}}\",\r\n                            \"country\": \"BR\",\r\n                            \"postalcode\": \"{{randomCep}}\",\r\n                            \"phone\": \"{{$randomPhoneNumber}}\"\r\n                        }\r\n                    },\r\n                    \"savecard\": false\r\n                }\r\n            }\r\n        ],\r\n        \"deliveryaddress\": {\r\n            \"street\": \"{{$randomStreetName}}\",\r\n            \"number\": \"{{$randomInt}}\",\r\n            \"complement\": \"{{$randomStreetAddress}}\",\r\n            \"neighborhood\": \"{{$randomAdjective}} {{$randomWord}}\",\r\n            \"city\": \"{{$randomCity}}\",\r\n            \"state\": \"{{randomState}}\",\r\n            \"country\": \"BR\",\r\n            \"postalcode\": \"{{randomCep}}\",\r\n            \"phone\": \"{{$randomPhoneNumber}}\"\r\n        },\r\n        \"countrycode\": \"BR\",\r\n        \"amount\": {{amount}},\r\n        \"currency\": \"BRL\"\r\n    },\r\n    \"frontdata\": {\r\n        \"useragent\": \"{{$randomUserAgent}}\",\r\n        \"IpAddress\": \"{{$randomIP}}\"\r\n    },\r\n    \"istest\": false,\r\n    \"isfromfrontend\": false\r\n}"
+						},
+						"url": {
+							"raw": "https://engine.tunagateway.com/api/Payment/Init",
+							"protocol": "https",
+							"host": [
+								"engine",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Payment",
+								"Init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. Init Payment with Antifraud Custom data (engine api)",
 					"event": [
 						{
 							"listen": "test",
