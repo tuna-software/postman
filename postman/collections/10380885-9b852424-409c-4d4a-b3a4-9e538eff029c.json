@@ -1411,7 +1411,7 @@
 					"response": []
 				},
 				{
-					"name": "4. Bind CVV (token api) Copy",
+					"name": "8. Get Token Details (token api)",
 					"event": [
 						{
 							"listen": "prerequest",
