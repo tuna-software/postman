@@ -1411,6 +1411,78 @@
 					"response": []
 				},
 				{
+					"name": "4. Bind CVV (token api) Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4b496ccb-304b-42ae-a353-cae24f49375a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3d1f215-d533-49ca-a3e5-6107a03cddaa",
+								"exec": [
+									"var jsonData = JSON.parse(pm.response.text());\r",
+									"if (jsonData.authenticationInformation != null)\r",
+									"{   \r",
+									"    pm.collectionVariables.set(\"TransactionId\", jsonData.authenticationInformation.transactionId);\r",
+									"    pm.collectionVariables.set(\"ReferenceId\", jsonData.authenticationInformation.referenceId);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "10380885-6f82e93d-fbda-4284-883c-c0408b120811",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"{{cardtoken}}\",\r\n    \"sessionId\": \"{{sessionid}}\",\r\n    \"CVV\": \"\",\r\n    \"AuthenticationInformation\": {\r\n        \"Code\": \"{{Code}}\"\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://token.tunagateway.com/api/Token/Bind",
+							"protocol": "https",
+							"host": [
+								"token",
+								"tunagateway",
+								"com"
+							],
+							"path": [
+								"api",
+								"Token",
+								"Bind"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "5. Delete Token (token pai) Copy",
 					"event": [
 						{
