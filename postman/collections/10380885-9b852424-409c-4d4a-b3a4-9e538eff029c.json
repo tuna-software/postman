@@ -5647,8 +5647,7 @@
 		},
 		{
 			"key": "baseUrl",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "subscriptionKey",
@@ -5664,28 +5663,23 @@
 		},
 		{
 			"key": "amount_method_2",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "amount_method_1",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "halfamount",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "totalamount",
-			"value": "",
-			"type": "default"
+			"value": ""
 		},
 		{
 			"key": "detailUniqueID",
-			"value": "",
-			"type": "default"
+			"value": ""
 		}
 	]
 }
